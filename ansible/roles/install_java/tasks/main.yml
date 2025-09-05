@@ -1,0 +1,7 @@
+---
+# tasks file for install_java
+---
+- name: Install Java
+  apt:
+    name: openjdk-17-jdk
+    state: present

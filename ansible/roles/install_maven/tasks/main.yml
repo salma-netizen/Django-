@@ -1,0 +1,7 @@
+---
+# tasks file for install_maven
+---
+- name: Install Maven
+  apt:
+    name: maven
+    state: present

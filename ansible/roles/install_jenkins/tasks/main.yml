@@ -1,0 +1,50 @@
+---
+# tasks file for install_jenkins
+---
+- name: Update apt cache
+  apt:
+        update_cache: yes
+        cache_valid_time: 3600
+
+- name: Install Java 11
+  apt:
+        name: openjdk-11-jdk
+        state: present
+
+- name: Add Jenkins GPG key
+  apt_key:
+        url: https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
+        state: present
+
+- name: Add Jenkins repository
+  apt_repository:
+        repo: "deb https://pkg.jenkins.io/debian-stable binary/"
+        state: present
+        update_cache: yes
+
+- name: Install Jenkins
+  apt:
+        name: jenkins
+        state: present
+
+- name: Start and enable Jenkins service
+  systemd:
+        name: jenkins
+        state: started
+        enabled: yes
+
+- name: Wait for Jenkins to start
+  wait_for:
+        port: 8080
+        host: localhost
+        delay: 30
+        timeout: 300
+
+- name: Get Jenkins initial admin password
+  command: cat /var/lib/jenkins/secrets/initialAdminPassword
+  register: jenkins_password
+  changed_when: false
+
+- name: Display Jenkins initial password
+  debug:
+        msg: "Jenkins initial admin password: {{ jenkins_password.stdout }}"

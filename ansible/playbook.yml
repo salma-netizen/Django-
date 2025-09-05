@@ -1,0 +1,17 @@
+---
+- name: Install required packages on Slave Nodes
+  hosts: all  # تثبيت الحزم فقط على الـ all Nodes
+  become: true
+  roles:
+    - install_git
+    - install_docker
+    - install_java  # تثبيت Git، Docker، و Java على الـ all Nodes فقط
+    - install_maven
+
+# تثبيت الحزم على الـ Master Node
+- name: Install required packages on Master Node
+  hosts: master  # تثبيت الحزم فقط على الـ Master Node
+  become: true
+  roles:
+    - install_jenkins  # تثبيت Jenkins فقط على الـ Master Node
+

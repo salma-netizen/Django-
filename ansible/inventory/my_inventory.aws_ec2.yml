@@ -1,0 +1,20 @@
+plugin: aws_ec2
+regions:
+  - us-east-1
+filters:
+  instance-state-name: running
+  "tag:Name":
+    - "k8s-master"
+    - "k8s-node-1"
+    - "k8s-node-2"
+hostnames:
+  - tag:Name
+  - private-ip-address
+compose:
+  ansible_host: public_ip_address | default(private_ip_address)
+  ansible_user: ubuntu
+  availability_zone: placement.availability_zone
+  instance_name: tags.Name
+groups:
+  master: tags.Name == "k8s-master"
+  workers: tags.Name in ["k8s-node-1", "k8s-node-2"]
