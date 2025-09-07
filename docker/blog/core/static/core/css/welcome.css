@@ -1,0 +1,158 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Cairo', sans-serif;
+    box-sizing: border-box;
+}
+html{
+    height: 100%;
+}
+.overlay {
+    position: fixed; /* Sit on top of the page content */
+    display:block ; /*Hidden by default */
+    width: 100%; /* Full width (cover the whole page) */
+    height: 100%; /* Full height (cover the whole page) */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,.5); /* Black background with opacity */
+    z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+  }
+body{
+    height: 100%;
+    background-image: url('../images/background.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.cotainer{
+    z-index: 3;
+}
+*{
+    font-family: 'Cairo', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: white;
+}
+
+
+header , footer{
+    height: 60px;
+
+    padding: 10px;
+}
+.menu{
+    text-decoration: none;
+    color: white;
+}
+.logo {
+    font-size: 30px;
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    margin-right: 10px;
+    /*------------------------------- */
+}
+.logo:hover{
+     color: white;  /*------------------------------- */
+}
+.BL {
+    color: #f1f4c6;
+    font-weight: bolder;
+}
+.nav-menu{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+.menu{
+    margin: 10px;
+    font-weight: bolder;
+}
+.menu:hover {
+    color: #f1f4c6;
+}
+.content {
+    margin: 50px auto;
+}
+.about >h2 ,.cat > h2{
+    margin: 25px;
+}
+.about > p {
+    width :300px;
+    margin: 10px;
+    padding: 30px;
+    border: .5px #837d7d solid;
+    border-radius: 10%;
+}
+
+footer{
+    width: 100%;
+    position: fixed;
+    bottom: 0px;
+}
+.quote{margin-top: 80px;
+    text-align: center;
+}
+.h{
+    padding: 40px 0;
+    font-size: 50px;
+    font-weight: bolder;
+    margin: 170px auto;
+}
+.login , .register {
+    text-align: center;
+    padding: 20px;
+    border : 3px solid white;
+    width: 250px;
+    margin: 10px;
+    border-radius: 15px 50px ;
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+    font-weight: bolder;
+}
+.login{
+    border-radius: 50px 15px ;
+    background: white;
+
+    color: #3F6802;
+
+    /* 3F6802 */
+}
+.content{
+    margin-top: 140px;
+    display: flex;
+
+    justify-content: center;
+}
+@keyframes a {
+    from {border-radius: 50px 15px ;}
+    to {border-radius: 15px 15px ;}
+}
+@keyframes b {
+    from {border-radius: 15px 50px ;}
+    to {border-radius: 15px 15px ;}
+}
+.login:hover ,.login:focus {
+    animation-name: a;
+    animation-duration: 1.5s;
+    animation-iteration-count :infinite;
+    animation-direction:alternate;
+    animation-timing-function: ease-in-out;
+    color:#3F6802 ;
+
+
+}
+.register:hover ,.register:focus {
+    animation-name: b;
+    animation-duration: 1.5s;
+    animation-iteration-count :infinite;
+    animation-direction:alternate;
+    animation-timing-function: ease-in-out;
+    color: white;
+
+}
+

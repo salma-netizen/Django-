@@ -1,0 +1,172 @@
+.postimg{
+    height: 50%;
+    width: 60%;
+    margin: 20px auto;
+    object-fit: cover;
+}
+.post-header{
+margin: 15px 20px;
+display: flex;
+align-items: center;
+justify-content: flex-start;
+gap: 10px;
+
+}
+.avatar{
+	width: 75px;
+    height: 75px;
+    background-clip: border-box;
+    border: 1px solid whitesmoke;
+    object-fit: cover;
+    object-position: 50% 50%;
+    border-radius: 50%;
+
+}
+.username{
+	color: black;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.details{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.info{
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+.post-title{
+    font-size: 24px;
+    font-weight: bold;
+    margin: 5px 15px;
+}
+.cdate{
+	font-size: 12px;
+	color: rgb(112, 112, 112);
+	margin-left: 15px;
+}
+.cat{
+    font-size: 15px;
+}
+.tags{
+    margin-left: 15px;
+    display: flex;
+    gap: 5px;
+    align-items: flex-start;
+    justify-content:center;
+}
+.tag{
+	text-decoration: none;
+    padding: 6px;
+    border-radius: 11px;
+    border: 1px solid #005555;
+    color: white;
+    font-size: 13px;
+    font-weight: bold;
+    background-color: #005555;
+    margin: 0 5px;
+}
+.tag:hover{
+	background-color: white;
+	color: #005555;
+
+    
+}
+.content{
+    margin: 15px 40px;
+    text-align: left;
+    padding: 10px;
+}
+.comment{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    word-wrap: break-word;
+
+}
+.imgandcomment{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.comcon{
+    margin-top: 10px;
+}
+.undercomment{
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+    gap: 10px;
+}
+.commentuser{
+    margin-left:5px ;
+    font-size: 17px;
+    font-weight: bold;
+}
+.delcomment{
+    margin-top: -15px;
+    color: red;
+}
+.delcomment:hover{
+    color: rgba(255, 0, 0, 0.69);
+}
+.replaybtn{
+color: black;
+}
+.replaybtn:hover{
+color: #040404c0;
+cursor: pointer;
+}
+.replaysection{
+    width: 50px;
+    height: 20px;
+}
+.replayform{
+    display: flex;
+    flex-direction: column;
+}
+.commentarea{
+    resize: none;
+
+}
+.replay{
+    width: 70%;
+    margin: 2px auto;
+}
+.tag2{
+	text-decoration: none;
+    padding: 10px;
+    border-radius: 11px;
+    border: 1px solid #005555;
+    color: #005555;
+    font-size: 13px;
+    font-weight: bold;
+    background-color: white;
+    margin: 0 5px;
+}
+.tag2:hover{
+	background-color: #005555;
+	color: white;
+
+    
+}
+.delete{
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 11px;
+    border: 1px solid red;
+    color: red;
+    font-size: 13px;
+    font-weight: bold;
+    background-color: white;
+    margin: 0 5px;
+}
+.delete:hover{
+	background-color: red;
+	color: white;
+
+    
+}

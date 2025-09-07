@@ -1,0 +1,26 @@
+{% extends 'core/indexbase.html' %}
+{% load crispy_forms_tags %}
+{% load static%}
+{% block main_block %}
+
+
+
+<h1 style="color: black; ">
+    Deleting comment
+</h1>
+
+
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+
+ <div>
+
+   <p><strong>Are you sure ?</strong ><br>You are about to delete {{ object}}'s comment </p>
+
+</div>
+      <button type="submit" class="btn btn-danger">Delete</button><br>
+      <br><a href="{% url 'post' %}" class="btn btn-info">Back </a>
+
+</form>
+ 
+{% endblock %}

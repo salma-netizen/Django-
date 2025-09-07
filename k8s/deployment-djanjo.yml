@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: django
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: django
+  template:
+    metadata:
+      labels:
+        app: django
+    spec:
+      containers:
+      - name: django
+        image: salmastudydocker/blog_web_app:latest
+        env:
+        - name: DATABASE_HOST
+          value: db
+        envFrom:
+        - configMapRef:
+            name: django-config
+        ports:
+        - containerPort: 8000
+        volumeMounts:
+        - name: django-storage
+          mountPath: /app/static
+      volumes:
+      - name: django-storage
+        persistentVolumeClaim:
+          claimName: django-pvc

@@ -1,0 +1,106 @@
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Cairo', sans-serif;
+    box-sizing: border-box;
+}
+body,html{
+    height: 100%;
+}
+.overlay {
+    position: fixed; /* Sit on top of the page content */
+    display:block ; /*Hidden by default */
+    width: 100%; /* Full width (cover the whole page) */
+    height: 100%; /* Full height (cover the whole page) */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,.5); /* Black background with opacity */
+    z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+
+
+  }
+.body{
+    height: 100%;
+    background-image: linear-gradient(to bottom, rgba(0,0,250,0), rgba(0,0,250,.5));
+    filter: blur(8px);
+    -webkit-filter: blur(8px);
+    z-index: -1;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.cotainer{
+    z-index: 3;
+}
+
+header {
+    height: 60px;
+    padding: 10px;
+}
+.menu{
+    text-decoration: none;
+    color: white;
+}
+
+
+
+.menu{
+    margin-left: 10px;
+    font-weight: bolder;
+}
+.menu:hover {
+    color: #f1f4c6;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.form{
+    width: 400px;
+    box-shadow: 0 0 3px 0 rgba(0,0,0,0.3);
+    padding: 20px;
+    background: #ffffff;
+    margin: 15% auto ;
+    text-align: center;
+    border-radius: 20px;
+}
+
+.form h1{
+
+    color: #1B75B1;
+}
+.input-text{
+    border-radius: 20px;
+    padding: 10px;
+    width: 100%;
+    border: 1px solid #999999;
+    outline: none;
+}
+.kk{
+    color: #fff;
+    background-color: #1cacfc;
+    width: 100%;
+    padding: 10px;
+    border-radius: 20px;
+    font-size: 15px;
+    cursor: pointer;
+    outline: none;
+    border: none;
+}
+#b1{
+    margin-top: 20px;
+}
+img{
+    width: 70px;
+    height: 70px;
+    margin-top: -70px;
+}
+

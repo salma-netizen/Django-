@@ -1,0 +1,151 @@
+{% extends 'core/indexbase.html'%}
+{% load static %}
+{%block title%}
+Home
+{%endblock%}
+
+{% block main_block %}
+
+
+<html>
+
+<head>
+    <!-- Style and bootstrap Links  -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="{% static 'core/css/show.css' %}" rel="stylesheet">
+
+</head>
+
+
+
+<body>
+    <br>
+    <!-- Start Home Page -->
+    <section class="content-item " id="blog-timeline">
+        <div class="container">
+            <div class="row">
+                <!-- BLOG POSTS - START -->
+                <div class="col-sm-9">
+                    <div class="timeline">
+                        {% for post in page_obj %}
+                                <div class="">
+
+                                    <!-- Avatar of user -->
+                                    <div class="post-header" >
+                                        <img src="{{post.user.profile.profileimg.url}}" class="avatar" alt="avatar-img"  >
+                                        <div class="post-user  " ><span class="username">@{{post.user.username}}</span></div>
+
+
+
+                                    </div>
+                                    <div class="card mb-3 shadow-sm p-3 mb-5 bg-white rounded" >
+                                        <div class="row g-0">
+                                            <div class = "imgandurl">
+                                                <!-- Post Image  -->
+                                                <a href="{{post.get_post_url}}" target="_self">
+                                                    <img class="post-img shadow-sm  " style="height: 80%; width: 100%;" src="{{ post.get_picture_url }}"
+                                                        alt="post-img">
+                                                </a><br>
+                                                <br>
+
+                                            </div>
+                                            <!--  Post details  -->
+                                            <div class="col-md-8 c" >
+                                                <div class="cardbody">
+                                                    <div class="tid">
+                                                        <a class="title" href="{{post.get_post_url}}">{{post.title}}</a>
+                                                            <p class="cdate">{{post.created_at}}</p>
+                                                    </div>
+
+
+
+                                                </div>
+                                                <div class="container" style="display: inline-block " align="left">
+                                                    {{post.content|slice:":100" }}... <a class="read" href="{{post.get_post_url}}" >  <small >Read more</small></a>
+                                                     <br>
+
+                                                    <div class="tags" style="margin-top: 10px" >
+                                                             {% for tag in post.tags.all %}
+                                                                <a class="unsubscribe" style ="padding:4px; font-weight: bold; " href="{% url 'tagged' tag.slug %}">#{{ tag }}</a>
+                                                             {% endfor %}
+                                                        </div>
+                                                </div>
+                                            </div>
+                                            <!-- End of post details -->
+                                        </div>
+                                    </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <!-- BLOG POSTS - END -->
+
+                <!-- SIDEBAR - START -->
+
+                <div class="col-sm-3  shadow p-3 mb-5 bg-white rounded ">
+                    <div class="sidebar">
+                        <!-- Start of Categories   -->
+                        <div id="title">Categories</div>
+                        <div class="categories">
+                            <ul class="list">
+                                {% for category in categories %}
+                                <li class="both">
+                                    <a class="category" style="text-decoration: none;" href="{% url 'cat-posts' category.id %}"><span>{{ category.cat_name }}</span></a>
+                                    {% if user.is_authenticated %}
+                                    {% if user in category.user.all %}
+                                    <a type="button" class="unsubscribe"
+                                        href="{% url 'unsubscribe' category.id %}">Unsubscribe</a>
+                                    {% else %}
+                                    <a type="button" class="subscribe"
+                                        href="{% url 'subscribe' category.id %}">Subscribe</a>
+                                    {% endif %}
+                                    {% endif %}
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+
+                    </div>
+
+                </div>
+                <!-- SIDEBAR - END -->
+            </div>
+        </div>
+    </section>
+    <!-- End Section -->
+
+    <!-- Start Footer Section -->
+
+    <footer >
+        <br><div style="color: #005555;">
+
+        Page {{page_obj.number}} of {{page_obj.paginator.num_pages}}
+     </div>
+     <br><nav aria-label="Page navigation example">
+      <ul class="pagination justify-content-center">
+      {% if page_obj.has_previous %}
+      <li class="page-item"><a class="page-link" href="?page=1" style="color: #005555;">&lt; First</a></li>
+      <li class="page-item"><a class="page-link" href="?page={{page_obj.previous_page_number}}" style="color: #005555;">&lt; Previous</a></li>
+          {% endif %}
+
+      {% if page_obj.has_next %}
+
+      <li class="page-item"><a class="page-link" href="?page={{page_obj.next_page_number}}" style="color: #005555;">Next &gt;</a></li>
+      {% endif %}
+      {% if page_obj.has_previous %}
+      <li class="page-item"><a class="page-link" href="?page={{page_obj.paginator.num_pages}}" style="color: #005555;" > Last &gt;</a></li>
+      {% endif %}
+
+  </ul>
+</nav>
+    </footer>
+
+    <!-- End Footer Sesction -->
+
+
+</body>
+
+</html>
+
+{% endblock %}
+

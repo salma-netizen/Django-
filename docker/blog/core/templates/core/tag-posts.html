@@ -1,0 +1,71 @@
+{% extends 'core/indexbase.html'%}
+{% load crispy_forms_tags %}
+{% load static%}
+{%block title%}
+tag_posts
+{%endblock%}
+{% block main_block %}
+<head>
+    <link rel="stylesheet" href="{% static 'core/css/show.css' %}">
+</head>
+<div class="container">
+    <div class="row">
+        <!-- BLOG POSTS - START -->
+        <div class="" style="margin: 5px auto;">
+            <div class="timeline">
+                {% for post in posts %}
+                        <div class="">
+
+                            <!-- Avatar of user -->
+                            <div class="post-header" >
+                                <img src="{{post.user.profile.profileimg.url}}" class="avatar" alt="avatar-img"  >
+                                <div class="post-user  " ><span class="username">@{{post.user.username}}</span></div>
+
+
+
+                            </div>
+                            <div class="card mb-3 shadow-sm p-3 mb-5 bg-white rounded" >
+                                <div class="row g-0">
+                                    <div class = "imgandurl">
+                                        <!-- Post Image  -->
+                                        <a href="{{post.get_post_url}}" target="_self">
+                                            <img class="post-img shadow-sm  " style="height: 80%; width: 100%;" src="{{ post.get_picture_url }}"
+                                                alt="post-img">
+                                        </a><br>
+                                        <br>
+
+                                    </div>
+                                    <!--  Post details  -->
+                                    <div class="col-md-8 c" >
+                                        <div class="cardbody">
+                                            <div class="tid">
+                                                <a class="title" href="{{post.get_post_url}}">{{post.title}}</a>
+                                                    <p class="cdate">{{post.created_at}}</p>
+                                            </div>
+
+
+
+                                        </div>
+                                        <div class="content">
+                                            {{post.content|slice:":100" }}... <a class="read" href="{{post.get_post_url}}" >  <small >Read more</small></a>
+                                            <p class="card-title"align="left" >
+                                                <br>
+                                                <div>
+                                                         {% for tag in post.tags.all %}
+                                                            <a href="{% url 'tagged' tag.slug %}" class="unsubscribe" style ="padding:6px; font-weight: bold;">#{{ tag }}</a>
+                                                         {% endfor %}
+                                                    </div>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <!-- End of post details -->
+                                </div>
+                            </div>
+                    </div>
+                {% endfor %}
+                <br>
+            </div>
+        </div>
+        <!-- BLOG POSTS - END -->
+
+{%endblock%}
