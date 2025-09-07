@@ -1,0 +1,76 @@
+@Library('my-shared-library@main') _ 
+
+pipeline {
+    agent { label 'Agent-node' }
+
+    environment {
+        DOCKERHUB_CREDENTIALS = 'dockerhub-credentials'
+        IMAGE_NAME = 'salmastudydocker/blog_web_app:latest'
+	GITHUB_CREDENTIALS = 'github-credentials'
+       }
+    
+    stages {
+        stage('Checkout') {
+            steps {
+                  checkout scm
+                 }
+	    }      
+        stage('Build Image') {
+            steps {
+                script {
+                    buildImage()
+                }
+            }
+        }
+
+        stage('Scan Image') {
+            steps {
+                script {
+                    scanImage()
+                }
+            }
+        }
+
+        stage('Push Image') {
+            steps {
+                script {
+		    echo "📦 Starting Push Image stage..."
+                    withCredentials([usernamePassword(credentialsId: DOCKERHUB_CREDENTIALS, usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
+                        echo "Logging into DockerHub..."
+                        sh "echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin"
+                        pushImage()
+                    }
+                }
+            }
+        }
+
+        stage('Delete Image Locally') {
+            steps {
+                script {
+                    deleteImageLocally()
+                }
+            }
+        }
+
+        stage('Update Manifests') {
+            steps {
+                script {
+                    updateManifests()
+                }
+            }
+        }
+
+        stage('Push Manifests') {
+            steps {
+                script {
+		    echo "📦 Starting Push updated Manifests..."
+		    withCredentials([usernamePassword(credentialsId: 'github-credentials',
+                                    usernameVariable: 'GIT_USERNAME',
+                                    passwordVariable: 'GIT_PASSWORD')]) {
+		    pushManifests()
+		   }
+                }
+            }
+        }
+    }
+}

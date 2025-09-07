@@ -1,9 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: django-config
-data:
-  DJANGO_SETTINGS_MODULE: "myapp.settings"
-  DATABASE_HOST: postgres
-  DEBUG: "False"
-  ALLOWED_HOSTS: "mydomain.com"
