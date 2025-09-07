@@ -1,0 +1,7 @@
+apiVersion: v1
+data:
+  db.properties: "env=prod\r\ndatabaseserver=hrmsdb\r\nip=127.0.0.1"
+kind: ConfigMap
+metadata:
+  name: config-file
+  namespace: default
