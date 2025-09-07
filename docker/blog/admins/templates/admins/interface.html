@@ -1,0 +1,61 @@
+{% extends 'admins/adminbase.html' %}
+
+{% block content %}
+
+
+  <div class="content-wrapper">
+    <div class="content-header">
+      <div class="container-fluid "style="background-color: #2155CD ">
+        <div class="row">
+          <div class="col-sm-12" style="height: 60px ">
+            <h1 class="text-center text-light fw-light" style="background-color:#2155CD ;margin-top: 10px ">Users Info</h1>
+          </div>
+          <div class="col-sm-6">
+          </div>
+        </div>
+      </div>
+    </div>
+
+  
+
+    <!-- Main content -->
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col md-12 sm-6">
+        <table style="text-align : center;background-color:#2155CD ;color: white" class="table table-lg table">
+          <thead style="background-color:#2155CD">
+            <tr style="background-color:#2155CD ">
+              <th scope="col">ID</th>
+              <th scope="col">Username</th>
+              <th scope="col">Email Address</th>
+              <th scope="col">Last Login</th>
+              <th scope="col">Locked</th>
+              <th scope="col" colspan="5">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for user in users %}
+           <tr style="background-color:	#2155CD">
+           <td>{{user.id}}</td>
+           <td>{{user.username}}</td>
+           <td>{{user.email}}</td>
+           <td>{{user.last_login}}</td>
+           <td>{{user.profile.is_locked}}</td>
+
+           <td style="background-color:#2155CD" colspan="5" style="text-align:center; padding:15px;">
+            <a class="btn" style="background-color: gold; " href="/admins/promote/{{user.id}}">Promote</a>
+
+            <a class="btn" style="background-color: gold; " href="/admins/unlock/{{user.id}}">Unlock</a>
+
+            <a class="btn btn-danger" style=" "href="/admins/lock/{{user.id}}" >Lock</a>
+
+          </td>
+          </tr> 
+          {%endfor%}
+          </tbody>
+        </table>
+        </div>
+      </div>
+    </div>
+
+  {% endblock %}

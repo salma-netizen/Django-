@@ -1,0 +1,46 @@
+*{
+    font-family: 'Cairo', sans-serif;
+}
+
+.navigation  {
+background-color: #144f25;
+}
+
+.welcome{
+    margin:5px -30px 5px 5px  ;
+    color: white;
+    font-size:14px;
+}
+
+.logo {
+    font-size: 30px;
+    color: white;
+    font-weight: bold;
+    text-decoration: none
+}
+
+.logo:hover{
+     color: white;  /*------------------------------- */
+}
+.BL {
+    color: #f1f4c6;
+    font-weight: bolder;
+}
+
+a:hover {
+    color: red;
+}
+
+
+/*}*/
+/*footer{*/
+/*    display: flex;*/
+/*    align-items: center;*/
+/*    justify-content: center;*/
+/*    background-color: #202124;*/
+/*    color: white;*/
+/*    height: 35px;*/
+/*    width: 100%;*/
+/*    bottom: 0px;*/
+/*}*/
+

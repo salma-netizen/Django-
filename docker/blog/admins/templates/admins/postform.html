@@ -1,0 +1,51 @@
+{% extends 'admins/adminbase.html'  %}
+
+{% block content %}
+
+<div class="content-wrapper">
+    <div class="content-header">
+      <div class="container-fluid p-2">
+        <div class="row ">
+          <div class="col-sm-12">
+            <h1 class="text-center shadow p-2 text-light  fw-light " style="background-color:	#2155CD ;color: white" >Posts Creation</h1>
+          </div>
+          <div class="col-sm-6">
+          </div>
+        </div>
+      </div>
+    </div>
+   
+
+    <!-- Main content -->
+    <div class="container-fluid">
+      <div class="row shadow p-3 mb-4 ">
+        <div class="col-8 md-8 sm-8">
+
+            <form method="POST" enctype="multipart/form-data"> 
+                {% csrf_token %}
+
+                <div class="mb-3 col-12 shadow p-3 mb-4" style="margin-left: 20%;">
+                  <label class="form-label col-12">{{form.title.label}} {{form.title}}</label>
+                  <label class="form-label col-12">{{form.picture.label}} {{form.picture}}</label>
+                  <label class="form-label col-12">{{form.content.label}} {{form.content}}</label>
+                  <label class="form-label col-12">{{form.category.label}} {{form.category}}</label>
+                  <label class="form-label col-12">{{form.tags.label}} {{form.tags}}</label>
+                </div>
+                <div>
+                    <input class="btn" style="background-color: #2155CD; color: white" type="submit" value="Add Post">
+                </div>
+            </form>
+            <div>
+
+                {% for field, errors in post_form.errors.items %}
+                               {% for error in errors %}
+                               <p class="text-danger">{{ error }}</p>
+                               {% endfor %}
+                        {% endfor %}
+            </div>
+        </div>
+        </div>
+      </div>
+    </div>
+
+{% endblock %}

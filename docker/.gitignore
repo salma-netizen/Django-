@@ -1,0 +1,5 @@
+# Project exclude paths
+main.py
+blog/Dockerfile
+blog/docker-compose.yml
+blog/wait-for-postgres.sh
