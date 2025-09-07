@@ -1,5 +1,0 @@
-spec:
-  ports:
-    - port: 80
-      targetPort: 8000
-      nodePort: 30080
