@@ -1,4 +1,5 @@
-def call() {
-    echo "Scanning Docker image..."
-    sh 'trivy image ${IMAGE_NAME}'
-}
+echo "scanning docker image..."
+sh '''
+export PATH=$PATH:/home/ubuntu/bin
+trivy image salmastudydocker/blog_web_app:latest
+'''
