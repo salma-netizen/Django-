@@ -1,4 +1,7 @@
-def call() {
-    echo "Scanning Docker image..."
-    sh "trivy image $IMAGE_NAME"
-}
+sh '''
+export PATH=$PATH:/usr/local/bin
+echo "PATH is: $PATH"
+which trivy
+trivy --version
+trivy image salmastudydocker/blog_web_app:latest
+'''
