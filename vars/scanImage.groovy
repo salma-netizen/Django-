@@ -1,9 +1,6 @@
-def call() {
-sh '''
-export PATH=$PATH:/usr/local/bin
-echo "PATH is: $PATH"
-which trivy
-trivy --version
-trivy image salmastudydocker/blog_web_app:latest
-'''
+def call(String IMAGE_NAME) {
+    sh """
+        /usr/local/bin/trivy --version
+        /usr/local/bin/trivy image ${IMAGE_NAME}
+    """
 }
