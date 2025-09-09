@@ -1,5 +1,5 @@
 def call(){
 	echo "scanning docker image..."
-	sh "trivy image $IMAGE_NAME "
+	sh "sh '/snap/bin/trivy image $IMAGE_NAME' "
 
 }
