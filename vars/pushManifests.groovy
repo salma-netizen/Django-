@@ -5,7 +5,7 @@ def call() {
     sh 'git config --global user.name "Jenkins"'
     sh 'git config --global user.email "jenkins@example.com"'
 
-    sh 'git add k8s\deployment-djanjo.yml'
+    sh 'git add k8s/deployment-djanjo.yml'
 
     sh 'git commit -m "Update Kubernetes deployment manifest with new image tag"'
 
