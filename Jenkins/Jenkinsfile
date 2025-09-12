@@ -5,21 +5,20 @@ pipeline {
     environment {
         DOCKERHUB_CREDENTIALS = 'dockerhub-credentials'
         IMAGE_NAME = 'salmastudydocker/blog_web_app:latest'
-	GITHUB_CREDENTIALS = 'github-credentials'
-       }
-       
+        GITHUB_CREDENTIALS = 'github-credentials'
+    }
+
     parameters {
         string(name: 'IMAGE_NAME', defaultValue: 'nginx:latest', description: 'Docker image to scan')
     }
 
-   
-    
     stages {
         stage('Checkout') {
             steps {
-                  checkout scm
-                 }
-	    }      
+                checkout scm
+            }
+        }
+
         stage('Build Image') {
             steps {
                 script {
@@ -35,14 +34,11 @@ pipeline {
                 }
             }
         }
-    }
-}
-
 
         stage('Push Image') {
             steps {
                 script {
-		    echo "📦 Starting Push Image stage..."
+                    echo "📦 Starting Push Image stage..."
                     withCredentials([usernamePassword(credentialsId: DOCKERHUB_CREDENTIALS, usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
                         echo "Logging into DockerHub..."
                         sh "echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin"
@@ -71,12 +67,12 @@ pipeline {
         stage('Push Manifests') {
             steps {
                 script {
-		    echo "📦 Starting Push updated Manifests..."
-		    withCredentials([usernamePassword(credentialsId: 'github-credentials',
-                                    usernameVariable: 'GIT_USERNAME',
-                                    passwordVariable: 'GIT_PASSWORD')]) {
-		    pushManifests()
-		   }
+                    echo "📦 Starting Push updated Manifests..."
+                    withCredentials([usernamePassword(credentialsId: 'github-credentials',
+                        usernameVariable: 'GIT_USERNAME',
+                        passwordVariable: 'GIT_PASSWORD')]) {
+                        pushManifests()
+                    }
                 }
             }
         }
