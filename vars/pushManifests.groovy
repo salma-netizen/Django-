@@ -9,7 +9,7 @@ def call() {
 
     sh 'git commit -m "Update..." || echo "No changes to commit."'
 
-    sh 'git push origin master'
+    sh 'git push origin main'
 
     echo "Manifests have been successfully pushed to GitHub."
 }
