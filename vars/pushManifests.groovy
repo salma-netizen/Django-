@@ -7,7 +7,7 @@ def call() {
 
     sh 'git add k8s/deployment-djanjo.yml'
 
-    sh 'git commit -m "Update Kubernetes deployment manifest with new image tag"'
+    sh 'git commit -m "Update..." || echo "No changes to commit."'
 
     sh 'git push origin master'
 
