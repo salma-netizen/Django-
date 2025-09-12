@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: django
-        image: salmastudydocker/blog_web_app:latest
+        image: salmastudydocker/blog_web_app:1
         env:
         - name: DATABASE_HOST
           value: db
