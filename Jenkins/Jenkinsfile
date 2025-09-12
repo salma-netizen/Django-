@@ -7,6 +7,11 @@ pipeline {
         IMAGE_NAME = 'salmastudydocker/blog_web_app:latest'
 	GITHUB_CREDENTIALS = 'github-credentials'
        }
+    parameters {
+        string(name: 'IMAGE_NAME', defaultValue: 'nginx:latest', description: 'Docker image to scan')
+    }
+
+   
     
     stages {
         stage('Checkout') {
@@ -22,13 +27,16 @@ pipeline {
             }
         }
 
-       stage('Scan Image') {
+        stage('Scan Image') {
             steps {
-                 script {
-                     scanImage()
+                script {
+                    scanImage(params.IMAGE_NAME)
+                }
+            }
         }
     }
 }
+
 
         stage('Push Image') {
             steps {
