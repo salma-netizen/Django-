@@ -6,7 +6,7 @@ def call() {
         sh 'git config user.email "engsalmaelsayed7@gmail.com"'
 
         // Set remote URL with embedded credentials
-        sh 'git remote add origin https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/salma-netizen/Django-.git'
+        sh 'git remote set-url origin https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/salma-netizen/Django-.git'
 
         // Ensure you're on a valid branch
         sh 'git checkout -B main'
