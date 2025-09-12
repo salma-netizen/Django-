@@ -1,20 +1,25 @@
 def call() {
     echo "📦 Pushing updated Kubernetes manifests to GitHub repository..."
 
-    sh 'git config user.name "Jenkins"'
-    sh 'git config user.email "jenkins@example.com"'
+    withCredentials([usernamePassword(credentialsId: 'github-credentials', usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD')]) {
+        sh 'git config user.name "salma-netizen"'
+        sh 'git config user.email "engsalmaelsayed7@gmail.com"'
 
-    // Ensure we're on the correct branch
-    sh 'git checkout -B main'
+        // Set remote URL with embedded credentials
+        sh 'git remote set-url origin https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/salma-netizen/Django-.git'
 
-    // Add and commit only if there are changes
-    sh """
-        git add k8s/deployment-djanjo.yml
-        git diff --cached --quiet || git commit -m "Update Kubernetes deployment manifest with new image tag"
-    """
+        // Ensure you're on a valid branch
+        sh 'git checkout -B main'
 
-    // Push to GitHub
-    sh 'git push origin main'
+        // Add and commit only if there are changes
+        sh """
+            git add k8s/deployment-djanjo.yml
+            git diff --cached --quiet || git commit -m "Update Kubernetes deployment manifest with new image tag"
+        """
+
+        // Push to GitHub
+        sh 'git push origin main'
+    }
 
     echo "✅ Manifests have been successfully pushed to GitHub."
 }
