@@ -9,7 +9,7 @@ pipeline {
     }
 
     parameters {
-        string(name: 'IMAGE_NAME', defaultValue: 'nginx:latest', description: 'Docker image to scan')
+        string(name: 'IMAGE_NAME', defaultValue: 'salmastudydocker/blog_web_app:latest', description: 'Docker image to scan')
     }
 
     stages {
