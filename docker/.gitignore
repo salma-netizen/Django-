@@ -1,0 +1,3 @@
+# Project exclude paths
+main.py
+blog/wait-for-postgres.sh

@@ -2,8 +2,6 @@ version: '3'
 services:
   db:
     image: postgres
-    ports:
-      - "5432:5432"
     volumes:
       - db_data:/var/lib/postgresql/data
     environment:
@@ -11,12 +9,14 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
 
-
   web_app:
-    build:
-      context: .
-      dockerfile: Dockerfile
-
+    build: .
+    command: >
+      sh -c "./wait-for-postgres.sh &&
+      python manage.py migrate &&
+      python manage.py makemigrations &&
+      python manage.py createsuperuser --noinput &&
+      python manage.py runserver 0.0.0.0:8000"
     volumes:
       - .:/code
     ports:
